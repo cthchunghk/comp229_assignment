@@ -1,0 +1,8 @@
+{
+  "name": "Express Profile",
+  "version": "0.0.1-DEV",
+  "dependencies": {
+    "express": "~4.8.8",
+    "ejs": "~2.6.1"
+  }
+}
