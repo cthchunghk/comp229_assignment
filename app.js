@@ -20,8 +20,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // TODO: Remember to add new path here
+/*
+Note: You will need to use the
+router.get(path, callback(req, res, next)) method structure with a res.render(view, locals)
+method call to render each view (13 Marks: Functionality).
+*/
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
