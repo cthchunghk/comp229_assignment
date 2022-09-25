@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // TODO: Remember to add new path here
 /*
 Note: You will need to use the

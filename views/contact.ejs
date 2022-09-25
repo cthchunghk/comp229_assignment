@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= typeof title != 'undefined'?title:'Contact Me' %></title>
+  </head>
+  <body>
+    <%- include('nav') %>
+
+    <form action="/sendMsg" method="post">
+      <h3>
+        Do you have any question? Just directly find me by fill in the following
+        form!
+      </h3>
+      <table>
+        <tr>
+          <td>Your name:</td>
+          <td><input type="text" id="name" name="name" /></td>
+        </tr>
+        <tr>
+          <td>Your email address:</td>
+          <td><input type="text" id="email" name="email" /></td>
+        </tr>
+        <tr>
+          <td>Your opinion:</td>
+          <td>
+            <textarea
+              id="detail"
+              name="detail"
+              placeholder="Write something..."
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="submit" value="Submit" /></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
