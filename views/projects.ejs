@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= typeof title != 'undefined'?title:'Projects' %></title>
+  </head>
+  <body>
+    <%- include('nav') %>
+    <h4>Projects</h4>
+    Following are the project involved before
+    <hr />
+    <table>
+      <tr>
+        <td></td>
+        <th>Project Name</th>
+        <th>Role</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td><img src="/images/box.jpg" height="75px" /></td>
+        <td>Revamping Inventory System</td>
+        <td>Analysis/Programmer</td>
+        <td>
+          Dec 2016 - Dec 2018<br />
+          Revamping the existing Inventory management system by using Java with
+          MVC web application architecture.<br />
+          Mainly focus on implementing the program designed. Involved in
+          gathering user requirements, system architecture designing, database
+          design and assisted on user testing
+        </td>
+      </tr>
+      <tr>
+        <td><img src="/images/motion-leap.png" width="90px" /></td>
+        <td>Motion controller in 3D game (Proof-of-concept)</td>
+        <td>Project owner</td>
+        <td>
+          Jan 2016 - Apr 2016<br />
+          Using motion controller(Leap motion controller is used in this
+          project) as input device in a 3D game and see how is it work.<br />
+          As a project owner, I had to prepare proposal, perform research on the
+          field, determining the tool going to use and creating a prototype.
+        </td>
+      </tr>
+      <tr>
+        <td><img src="/images/compass.webp" height="75px" /></td>
+        <td>Map included web application</td>
+        <td>Project Cooperator, Programmer</td>
+        <td>
+          Aug 2014 - Apr 2015<br />
+          Creating a web application using Java and including external API to as
+          a navigation system<br />
+          Main duty is to analyzing the tool to use and estimating the schedule
+          with designed structure by technology difficulty.
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

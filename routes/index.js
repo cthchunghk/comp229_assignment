@@ -1,44 +1,43 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-
 // Getting POST body by using body-parser API
-// const bodyParser = require("body-parser");
-// app.use(bodyParser.urlencoded({
-//   extended: true
-// }));
-// app.use(bodyParser.json());
-
+// Express is already included the API, so just use it directly
 router.use(express.json());
 
-
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Front page' });
+router.get("/", function (req, res, next) {
+  res.render("index", { title: "Front page" });
 });
 
-router.get('/about', (req, res, next) => {
-  res.render('dummy', {title: 'About me'});
-})
+// About page defining
+router.get("/about", (req, res, next) => {
+  res.render("about", { title: "About me" });
+});
 
-router.get('/projects', (req, res, next) =>{
-  res.render('dummy');
-})
+// Projects page defining
+router.get("/projects", (req, res, next) => {
+  res.render("projects", { title: "Projects" });
+});
 
-router.get('/services', (req, res, next) =>{
-  res.render('dummy');
-})
+// Services page defining
+router.get("/services", (req, res, next) => {
+  res.render("services", { title: "Services" });
+});
 
-router.get('/contact', (req, res, next) =>{
-  res.render('contact');
-})
+// Contact page defining
+router.get("/contact", (req, res, next) => {
+  res.render("contact", { title: "Contact me" });
+});
 
-router.post('/sendMsg', (req, res, next) =>{
+// Defining Send Message function by HTTP POST method
+router.post("/sendMsg", (req, res, next) => {
   // console.log(req.body);
   var post_body = req.body;
-  // Return the POST message
-  res.send(post_body);
-  })
-
+  // Show the POST message in console
+  console.log(post_body);
+  //res.send(post_body);
+  res.render('msg_sent', {senderName: post_body.name});
+});
 
 module.exports = router;

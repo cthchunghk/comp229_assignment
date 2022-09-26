@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= typeof title != 'undefined'?title:'About me' %></title>
+  </head>
+  <body>
+    <%- include('nav') %>
+    <h4 style="text-align: center">About me</h4>
+    <table align="center">
+      <tr>
+        <td rowspan="3"><img src="/images/self_photo.jpg" width="150" /></td>
+        <td>Name:</td>
+        <td>Ting Hin CHUNG</td>
+      </tr>
+      <tr>
+        <td>e-mail:</td>
+        <td>chungtinghin1995@gmail.com</td>
+      </tr>
+      <tr>
+        <td>Mobile:</td>
+        <td>+1 (647) 641-8581</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Bio:</td>
+        <td>
+          I was studied in Software Engineering in Hong Kong and was employed as
+          a programmer for years. Experienced in Java for about 3 years and
+          javascript(jQuery, Nodejs, Angular, React) about 2 years. Have been
+          involved in full cycle of Software Development.
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><a href="/static/CV_20220926_2.pdf">Download my full CV</a></td>
+      </tr>
+    </table>
+  </body>
+</html>
