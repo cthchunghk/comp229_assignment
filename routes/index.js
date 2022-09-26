@@ -36,8 +36,8 @@ router.post("/sendMsg", (req, res, next) => {
   var post_body = req.body;
   // Show the POST message in console
   console.log(post_body);
-  //res.send(post_body);
-  res.render('msg_sent', {senderName: post_body.name});
+  // Sending the user to msg_sent page, and passing the name user input to next page and show to user
+  res.render("msg_sent", { senderName: post_body.name });
 });
 
 module.exports = router;
