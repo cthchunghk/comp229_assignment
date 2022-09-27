@@ -4,7 +4,7 @@
     <title><%= typeof title != 'undefined'?title:'Services' %></title>
   </head>
   <body>
-    <%- include('partial/nav') %>
+    <%- include('partial/header') %>
     <h4>Services</h4>
     The services involved
     <hr />
@@ -53,5 +53,6 @@
         </td>
       </tr>
     </table>
+    <%- include('partial/footer') %>
   </body>
 </html>

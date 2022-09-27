@@ -4,7 +4,7 @@
     <title><%= typeof title != 'undefined'?title:'Contact Me' %></title>
   </head>
   <body>
-    <%- include('partial/nav') %>
+    <%- include('partial/header') %>
 
     <h4 style="text-align: center">Contact me</h4>
     <hr />
@@ -55,5 +55,6 @@
         </tr>
       </table>
     </form>
+    <%- include('partial/footer') %>
   </body>
 </html>

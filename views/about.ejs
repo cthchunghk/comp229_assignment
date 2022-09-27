@@ -4,7 +4,7 @@
     <title><%= typeof title != 'undefined'?title:'About me' %></title>
   </head>
   <body>
-    <%- include('partial/nav') %>
+    <%- include('partial/header') %>
     <h4 style="text-align: center">About me</h4>
     <table align="center">
       <tr>
@@ -36,5 +36,6 @@
         <td><a href="/static/CV_20220926_2.pdf">Download my full CV</a></td>
       </tr>
     </table>
+    <%- include('partial/footer') %>
   </body>
 </html>
