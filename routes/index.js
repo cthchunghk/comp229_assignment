@@ -11,23 +11,36 @@ router.get("/", function (req, res, next) {
 });
 
 // About page defining
+// router.get("/about", (req, res, next) => {
+//   res.render("about", { title: "About me" });
+// });
+
 router.get("/about", (req, res, next) => {
-  res.render("about", { title: "About me" });
+  res.render("partials/content", { title: "About me", content_path: "about" });
 });
 
 // Projects page defining
 router.get("/projects", (req, res, next) => {
-  res.render("projects", { title: "Projects" });
+  res.render("partials/content", {
+    title: "Projects",
+    content_path: "projects",
+  });
 });
 
 // Services page defining
 router.get("/services", (req, res, next) => {
-  res.render("services", { title: "Services" });
+  res.render("partials/content", {
+    title: "Services",
+    content_path: "services",
+  });
 });
 
 // Contact page defining
 router.get("/contact", (req, res, next) => {
-  res.render("contact", { title: "Contact me" });
+  res.render("partials/content", {
+    title: "Contact me",
+    content_path: "contact",
+  });
 });
 
 // Defining Send Message function by HTTP POST method
@@ -38,6 +51,10 @@ router.post("/sendMsg", (req, res, next) => {
   console.log(post_body);
   // Sending the user to msg_sent page, and passing the name user input to next page and show to user
   res.render("msg_sent", { senderName: post_body.name });
+});
+
+router.get("/test", (req, res, next) => {
+  res.render("partials/contents", { content_path: "../dummy" });
 });
 
 module.exports = router;
