@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+var partial = 'partials/'
 
 // Getting POST body by using body-parser API
 // Express is already included the API, so just use it directly
@@ -16,12 +17,12 @@ router.get("/", function (req, res, next) {
 // });
 
 router.get("/about", (req, res, next) => {
-  res.render("partials/content", { title: "About me", content_path: "about" });
+  res.render(partial+"content", { title: "About me", content_path: "about" });
 });
 
 // Projects page defining
 router.get("/projects", (req, res, next) => {
-  res.render("partials/content", {
+  res.render(partial+"content", {
     title: "Projects",
     content_path: "projects",
   });
@@ -29,7 +30,7 @@ router.get("/projects", (req, res, next) => {
 
 // Services page defining
 router.get("/services", (req, res, next) => {
-  res.render("partials/content", {
+  res.render(partial+"content", {
     title: "Services",
     content_path: "services",
   });
@@ -37,7 +38,7 @@ router.get("/services", (req, res, next) => {
 
 // Contact page defining
 router.get("/contact", (req, res, next) => {
-  res.render("partials/content", {
+  res.render(partial+"content", {
     title: "Contact me",
     content_path: "contact",
   });
