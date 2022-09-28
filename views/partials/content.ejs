@@ -1,9 +1,14 @@
+<!-- The main part of this project. Defining the major layout template and ready for injecting other ejs page in to main content section -->
 <!DOCTYPE html>
 <html>
-    <%- include('header') %>
+  <!-- Including the header part -->
+  <%- include('header') %>
   <body>
+    <!-- Navigation bar -->
     <%- include('nav') %>
+    <!-- The main content. The path is dynamic inject by passing the path from routing js file -->
     <%- include(content_path) %>
+    <!-- Footer. Just a copyright declaration -->
     <%- include('footer') %>
   </body>
 </html>
