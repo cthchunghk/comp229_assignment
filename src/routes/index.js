@@ -7,7 +7,7 @@
 
 var express = require("express");
 var router = express.Router();
-var partial = 'partials/'
+var content = "content/";
 
 // Getting POST body by using body-parser API
 // Express is already included the API, so just use it directly
@@ -24,30 +24,30 @@ router.get("/", function (req, res, next) {
 // });
 
 router.get("/about", (req, res, next) => {
-  res.render(partial+"content", { title: "About me", content_path: "about" });
+  res.render("content", { title: "About me", content_path: content + "about" });
 });
 
 // Projects page defining
 router.get("/projects", (req, res, next) => {
-  res.render(partial+"content", {
+  res.render("content", {
     title: "Projects",
-    content_path: "projects",
+    content_path: content + "projects",
   });
 });
 
 // Services page defining
 router.get("/services", (req, res, next) => {
-  res.render(partial+"content", {
+  res.render("content", {
     title: "Services",
-    content_path: "services",
+    content_path: content + "services",
   });
 });
 
 // Contact page defining
 router.get("/contact", (req, res, next) => {
-  res.render(partial+"content", {
+  res.render("content", {
     title: "Contact me",
-    content_path: "contact",
+    content_path: content + "contact",
   });
 });
 

@@ -9,13 +9,13 @@
 <!DOCTYPE html>
 <html>
   <!-- Including the header part -->
-  <%- include('header') %>
+  <%- include('partials/header') %>
   <body>
     <!-- Navigation bar -->
-    <%- include('nav') %>
+    <%- include('partials/nav') %>
     <!-- The main content. The path is dynamic inject by passing the path from routing js file -->
     <%- include(content_path) %>
     <!-- Footer. Just a copyright declaration -->
-    <%- include('footer') %>
+    <%- include('partials/footer') %>
   </body>
 </html>
