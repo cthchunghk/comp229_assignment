@@ -4,8 +4,22 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+let mongoose = require("mongoose");
+let db = require("./src/config/db");
+
+//point mongoose to the DB URI
+mongoose.connect(db.connString, { useNewUrlParser: true, useUnifiedTopology: true });
+
+let mongodb = mongoose.connection;
+mongodb.on("error", console.error.bind(console, "connection error:"));
+mongodb.once("open", () => {
+  console.log("Database Connected");
+});
+
+
 var indexRouter = require('./src/routes/index');
 var usersRouter = require('./src/routes/users');
+var authRouter = require('./src/routes/auth');
 
 var app = express();
 
@@ -28,6 +42,7 @@ method call to render each view (13 Marks: Functionality).
 */
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 
 
 // catch 404 and forward to error handler

@@ -8,3 +8,7 @@ function findUser() {
     console.log(userList);
   });
 }
+
+ module.exports = {
+    findUser
+ }
