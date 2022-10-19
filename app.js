@@ -33,6 +33,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Auth initialization
+var authConfig = require('./src/config/auth');
+authConfig.initializePassport(app);
 
 // TODO: Remember to add new path here
 /*
@@ -43,6 +46,7 @@ method call to render each view (13 Marks: Functionality).
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
+
 
 
 // catch 404 and forward to error handler
