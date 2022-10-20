@@ -35,8 +35,11 @@ function initializePassport(app) {
 
   // Pass the authorized user data for EJS access
   app.use(function (req, res, next) {
-    console.log(typeof req.user);
-    if (req.user != null && req.user != "undefined" && !typeof undefined) {
+    if (
+      req.user != null &&
+      req.user != "undefined" &&
+      typeof req.user != undefined
+    ) {
       res.locals.currentUser = req.user;
       res.locals.currentDisplayname = req.user.display;
     }
