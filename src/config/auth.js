@@ -30,16 +30,17 @@ function initializePassport(app) {
   passport.use(user.createStrategy());
 
   //serialize and deserialize user object info -encrypt and decrypt
-  //   passport.serializeUser(user.serializeUser());
-  //   passport.deserializeUser(user.deserializeUser());
-  passport.serializeUser(function (user, done) {
-    done(null, user._id);
-  });
+  passport.serializeUser(user.serializeUser());
+  passport.deserializeUser(user.deserializeUser());
 
-  passport.deserializeUser(function (id, done) {
-    User.findById(id, function (err, user) {
-      done(err, user);
-    });
+  // Pass the authorized user data for EJS access
+  app.use(function (req, res, next) {
+    console.log(typeof req.user);
+    if (req.user != null && req.user != "undefined" && !typeof undefined) {
+      res.locals.currentUser = req.user;
+      res.locals.currentDisplayname = req.user.display;
+    }
+    next();
   });
 }
 

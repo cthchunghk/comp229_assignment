@@ -22,19 +22,26 @@ let userModel = mongoose.Schema(
       type: String,
       default: "",
       trim: true,
-      required: "Email is required",
+      //required: "Email is required",
     },
     role: {
       type: String,
-      default: "",
+      default: "normal",
       trim: true,
-      required: "user role is required",
+      //required: "user role is required",
     },
     display: {
       type: String,
       default: "",
       trim: true,
-      required: "display name is required",
+    },
+    created: {
+      type: Date,
+      default: Date.now,
+    },
+    update: {
+      type: Date,
+      default: Date.now,
     },
   },
 
@@ -45,5 +52,4 @@ let userModel = mongoose.Schema(
 
 let options = { missingPasswordError: "Wrong / Missing Password" };
 userModel.plugin(passportLocalMongoose, options);
-//booksmodel to create new book more powerful than just class
-module.exports.userModel = mongoose.model("users", userModel);
+module.exports.userModel = mongoose.model("userModel", userModel);

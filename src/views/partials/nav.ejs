@@ -20,6 +20,11 @@
     <li class="nav-item">
       <a class="nav-link" href="/contact">Contact</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" 
+      href=<%= typeof currentDisplayname != 'undefined'?'/auth/logout':'/auth/login' %>
+      ><%= typeof currentDisplayname != 'undefined'?'Logout':'Login' %></a>
+    </li>
   </ul>
 </nav>
 
