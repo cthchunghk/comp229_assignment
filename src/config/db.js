@@ -1,20 +1,34 @@
-var prefix = 'mongodb+srv://';
-var dbUrl = 'cluster0.jvedyi3.mongodb.net/';
-var dbName = 'comp229';
-var postfix='?retryWrites=true&w=majority';
-var username = 'compuser';
-var password='qNV4uYWrBdTELFdg';
-var connString = prefix+username+':'+password+'@'+dbUrl+dbName+postfix;
+var prefix = "mongodb+srv://";
+var dbUrl = "cluster0.jvedyi3.mongodb.net/";
+var postfix = "?retryWrites=true&w=majority";
 
-module.exports = {
-    connString: connString
+var dbName = "comp229";
+var username = "compuser";
+var password = "qNV4uYWrBdTELFdg";
+var fullUrl =
+  "mongodb+srv://<username>:<password>@cluster0.jvedyi3.mongodb.net/<dbname>?retryWrites=true&w=majority";
+//var connString = prefix+username+':'+password+'@'+dbUrl+dbName+postfix;
+fullUrl = fullUrl
+  .replace("<username>", username)
+  .replace("<password>", password)
+  .replace("<dbname>", dbName);
+
+function initializeDBConnection() {
+  let mongoose = require("mongoose");
+
+  //point mongoose to the DB URI
+  mongoose.connect(fullUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  let mongodb = mongoose.connection;
+  mongodb.on("error", console.error.bind(console, "connection error:"));
+  mongodb.once("open", () => {
+    console.log("Database Connected");
+  });
 }
 
-// const { MongoClient, ServerApiVersion } = require('mongodb');
-// const uri = "mongodb+srv://<username>:<password>@cluster0.jvedyi3.mongodb.net/?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
-// });
+module.exports = {
+    initializeDBConnection
+};

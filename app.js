@@ -4,22 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-let mongoose = require("mongoose");
-let db = require("./src/config/db");
-
-//point mongoose to the DB URI
-mongoose.connect(db.connString, { useNewUrlParser: true, useUnifiedTopology: true });
-
-let mongodb = mongoose.connection;
-mongodb.on("error", console.error.bind(console, "connection error:"));
-mongodb.once("open", () => {
-  console.log("Database Connected");
-});
-
-
-var indexRouter = require('./src/routes/index');
-var usersRouter = require('./src/routes/users');
-var authRouter = require('./src/routes/auth');
+// DB Initialization
+let dbInitializer = require('./src/config/db');
+dbInitializer.initializeDBConnection();
 
 var app = express();
 
@@ -43,9 +30,8 @@ Note: You will need to use the
 router.get(path, callback(req, res, next)) method structure with a res.render(view, locals)
 method call to render each view (13 Marks: Functionality).
 */
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/auth', authRouter);
+routerInitializer = require('./src/routes/index')
+routerInitializer.useRouting(app);
 
 
 

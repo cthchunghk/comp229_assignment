@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var content = "auth/";
+var prefix = "auth/";
 
 var UserController = require("../controller/user");
 
@@ -19,27 +19,28 @@ let user = userModel.userModel; //alias
 //   }
 
 router.get("/", function (req, res, next) {
-  UserController.findUser();
+  //UserController.findUser();
+  return res.redirect("/" + prefix + "login");
 });
 
 router.get("/login", (req, res, next) => {
   res.render("content", {
     title: "Please login",
-    content_path: content + "login",
+    messages: req.flash("loginMessage"),
+    content_path: prefix + "login",
   });
 });
 
 router.get("/register", (req, res, next) => {
   res.render("content", {
     title: "Register",
-    content_path: content + "register",
+    messages: req.flash("registerMessage"),
+    content_path: prefix + "register",
   });
 });
 
 router.post("/login", (req, res, next) => {
-  console.log(req.body.username + "\t" + req.body.password);
   passport.authenticate("local", (err, user, info) => {
-    console.log(info);
     // server err?
     if (err) {
       console.log(err);
@@ -49,7 +50,7 @@ router.post("/login", (req, res, next) => {
     if (!user) {
       console.log("Username / password is wrong");
       req.flash("loginMessage", "Authentication Error");
-      return res.redirect("/auth/login");
+      return res.redirect("/" + prefix + "login");
     }
     req.login(user, (err) => {
       // server error?
@@ -57,7 +58,7 @@ router.post("/login", (req, res, next) => {
         console.log(err);
         return next(err);
       }
-      return res.redirect("/contact");
+      return res.redirect("/business/list");
     });
   })(req, res, next);
 });
@@ -81,11 +82,14 @@ router.post("/register", (req, res, next) => {
         );
         console.log("Error: User Already Exists!");
       }
-      return res.render("auth/register", {
+      return res.redirect("/" + prefix + "register");
+      /*
+      , {
         title: "Register",
         messages: req.flash("registerMessage"),
         displayName: req.user ? req.user.displayName : "",
-      });
+      }
+      */
     } else {
       // if no error exists, then registration is successful
 

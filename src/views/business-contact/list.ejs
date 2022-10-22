@@ -1,0 +1,36 @@
+<h4>Business Contact List</h4>
+<hr />
+<table align="center" width="100%">
+  <tr>
+    <th>Contact Name</th>
+    <th>Contact Number</th>
+    <th>Email Address</th>
+  </tr>
+  <% if(typeof contactList != 'undefined' && contactList.length>0) {%> <% for
+  (const contact of contactList){%>
+  <tr>
+    <td class="text-centre"><%=contact.name %></td>
+    <td class="text-centre"><%=contact.phone %></td>
+    <td class="text-centre"><%=contact.mail %></td>
+
+    <% if(typeof currentUser != 'undefined') { %>
+    <td class="text-center col-1">
+      <a
+        href="/book-list/edit/<%= contact._id %>"
+        class="btn btn-primary btn-sm"
+      >
+        <i class="fas fa-pencil-alt"></i> Edit</a
+      >
+    </td>
+    <td class="text-center col-1">
+      <a
+        href="/book-list/delete/<%= contact._id %>"
+        class="btn btn-danger btn-sm"
+      >
+        <i class="fas fa-trash-alt"></i> Delete</a
+      >
+    </td>
+    <%}%>
+  </tr>
+  <%}%> <%}%>
+</table>
