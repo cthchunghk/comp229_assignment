@@ -21,117 +21,113 @@ function displayAllRecord(req, res, next) {
   return this.contactList;
 }
 
-showAllRecord = (req, res, next) => {
-  contact.find((err, contactList) => {
+showAllRecordPage = (req, res, next) => {
+  contact
+    .find((err, contactList) => {
+      if (err) {
+        return console.error(err);
+      } else {
+        res.render("content", {
+          title: "Contect list",
+          messages: req.flash("contactMessage"),
+          contactList: contactList,
+          content_path: prefix + "list",
+        });
+      }
+    })
+    .sort([["name"]]);
+};
+
+showAddContactPage = (req, res, next) => {
+  res.render("content", {
+    title: "Add content",
+    content_path: prefix + "add",
+  });
+};
+
+showEditContactPage = (req, res, next) => {
+  let id = req.params.id;
+  contact.findById(id, (err, contact) => {
     if (err) {
-      return console.error(err);
+      console.log(err);
+      res.end(err);
     } else {
       res.render("content", {
-        title: "Contect list",
-        contactList: contactList,
-        content_path: prefix + "list",
+        title: "Edit contact",
+        contact: contact,
+        content_path: prefix + "edit",
       });
     }
   });
 };
 
-module.exports.displayBookList = (req, res, next) => {
-  Book.find((err, bookList) => {
-    if (err) {
-      return console.error(err);
-    } else {
-      //console.log(bookList);
-
-      res.render("book/list", {
-        title: "Books",
-        BookList: bookList,
-        displayName: req.user ? req.user.displayName : "",
-      });
-      //render book.ejs and pass title and Booklist variable we are passing bookList object to BookList property
-    }
-  });
-};
-
-module.exports.addpage = (req, res, next) => {
-  res.render("book/add", {
-    title: "Add Book",
-    displayName: req.user ? req.user.displayName : "",
-  });
-};
-
-module.exports.addprocesspage = (req, res, next) => {
-  let newBook = Book({
+addContact = (req, res, next) => {
+  let newContact = contact({
     name: req.body.name,
-    author: req.body.author,
-    published: req.body.published,
-    description: req.body.description,
-    price: req.body.price,
+    phone: req.body.phone,
+    mail: req.body.mail,
   });
-  Book.create(newBook, (err, Book) => {
+  contact.create(newContact, (err, contact) => {
     if (err) {
       console.log(err);
       res.end(err);
     } else {
-      // refresh the book list
-      res.redirect("/book-list");
+      req.flash(
+        "contactMessage",
+        "Contact: " + req.body.name + " is added successfully"
+      );
+      res.redirect("/business/list");
     }
   });
 };
 
-module.exports.displayeditpage = (req, res, next) => {
-  let id = req.params.id; //id of actual object
-
-  Book.findById(id, (err, booktoedit) => {
-    if (err) {
-      console.log(err);
-      res.end(err);
-    } else {
-      //show the edit view
-      res.render("book/edit", {
-        title: "Edit Book",
-        book: booktoedit,
-        displayName: req.user ? req.user.displayName : "",
-      });
-    }
-  });
-};
-
-module.exports.processingeditpage = (req, res, next) => {
-  let id = req.params.id; //id of actual object
-
-  let updatebook = Book({
+editContact = (req, res, next) => {
+  let id = req.params.id;
+  let updateContact = contact({
     _id: id,
     name: req.body.name,
-    author: req.body.author,
-    published: req.body.published,
-    description: req.body.description,
-    price: req.body.price,
+    phone: req.body.phone,
+    mail: req.body.mail,
   });
-  Book.updateOne({ _id: id }, updatebook, (err) => {
+  contact.updateOne({ _id: id }, updateContact, (err) => {
     if (err) {
       console.log(err);
       res.end(err);
     } else {
-      //refresh the book list
-      res.redirect("/book-list");
+      req.flash(
+        "contactMessage",
+        "Selected contact is updated successfully"
+      );
+      res.redirect("/business/list");
     }
   });
 };
 
-module.exports.deletepage = (req, res, next) => {
+deleteContact = (req, res, next) => {
   let id = req.params.id;
-  Book.remove({ _id: id }, (err) => {
+  //Warning: collection.remove is deprecated. Use deleteOne, 
+  //deleteMany, or bulkWrite instead
+  contact.deleteOne({ _id: id }, (err) => {
     if (err) {
       console.log(err);
       res.end(err);
     } else {
-      //refresh book list
-      res.redirect("/book-list");
+      req.flash(
+        "contactMessage",
+        "Contact: " + req.body.name + " is removed successfully"
+      );
+      res.redirect("/business/list");
     }
   });
 };
+
 
 module.exports = {
   displayAllRecord,
-  showAllRecord,
+  showAllRecordPage,
+  showAddContactPage,
+  showEditContactPage,
+  addContact,
+  editContact,
+  deleteContact,
 };

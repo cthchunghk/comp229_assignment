@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-md-3 col-md-6">
+
+      <form class="form" method="post">
+        <div class="from-group">
+          <label for="nameTextField">Contact Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nameTextField"
+            placeholder="Enter the Contact Name..."
+            name="name"
+            value="<%= contact.name %>"
+            required
+          />
+        </div>
+        <div class="from-group">
+          <label for="nameTextField">Contact Phone</label>
+          <input
+            type="text"
+            class="form-control"
+            id="phoneTextField"
+            placeholder="Enter the Contact Phone..."
+            name="phone"
+            value="<%= contact.phone %>"
+            required
+          />
+        </div>
+
+        <div class="from-group">
+          <label for="nameTextField">Contact Mail</label>
+          <input
+            type="text"
+            class="form-control"
+            id="mailTextField"
+            placeholder="Enter the Contact Mail..."
+            name="mail"
+            value="<%= contact.mail %>"
+            required
+          />
+        </div>
+
+        <button class="btn btn-primary" type="submit">
+          <i class="fas fa-edit"></i>Submit
+        </button>
+
+        <a href="/business/list" class="btn btn-warning">
+          <i class="fas fa-undo"></i>Cancel
+        </a>
+      </form>
+    </div>
+  </div>
+</div>

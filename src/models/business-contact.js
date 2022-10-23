@@ -13,6 +13,6 @@ let businessContactModel = mongoose.Schema(
 );
 
 module.exports = mongoose.model(
-  "contact_list",
+  "contact",
   businessContactModel
 );

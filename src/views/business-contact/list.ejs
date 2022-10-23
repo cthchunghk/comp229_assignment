@@ -1,5 +1,13 @@
 <h4>Business Contact List</h4>
 <hr />
+<% if(typeof messages != 'undefined' && messages.length>0) {%>
+<div class="alert"><%= messages %></div>
+<% } %>
+<div align="right">
+  <a href="/business/add" class="btn btn-primary btn-sm">
+    <i class="fas fa-pencil-alt"></i> Add</a
+  >
+</div>
 <table align="center" width="100%">
   <tr>
     <th>Contact Name</th>
@@ -16,7 +24,7 @@
     <% if(typeof currentUser != 'undefined') { %>
     <td class="text-center col-1">
       <a
-        href="/book-list/edit/<%= contact._id %>"
+        href="/business/edit/<%= contact._id %>"
         class="btn btn-primary btn-sm"
       >
         <i class="fas fa-pencil-alt"></i> Edit</a
@@ -24,7 +32,7 @@
     </td>
     <td class="text-center col-1">
       <a
-        href="/book-list/delete/<%= contact._id %>"
+        href="/business/del/<%= contact._id %>"
         class="btn btn-danger btn-sm"
       >
         <i class="fas fa-trash-alt"></i> Delete</a

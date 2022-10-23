@@ -11,27 +11,18 @@ loginChecker = AuthController.requireAuth;
 let contactModel = require("../models/business-contact");
 let contact = contactModel.businessContactModel; //alias
 
-// function requireAuth(req, res, next) {
-//     // check if the user is logged in
-//     if (!req.isAuthenticated()) {
-//       return res.redirect("/login");
-//     }
-//     next();
-//   }
-
-router.get("/", loginChecker, (req, res, next) => {
-  contactList = ContactController.displayAllRecord(res, req, next);
+router.get("/", loginChecker, async (req, res, next) => {
+  contactList = await ContactController.displayAllRecord(res, req, next);
   console.log("Business Routes:24 - " + contactList);
   res.redirect(urlPrefix + "list");
 });
 
-router.get("/list", loginChecker, ContactController.showAllRecord);
+router.get("/list", loginChecker, ContactController.showAllRecordPage);
+router.get("/add", loginChecker, ContactController.showAddContactPage);
+router.post("/add", loginChecker, ContactController.addContact);
+router.get("/edit/:id", loginChecker, ContactController.showEditContactPage);
+router.post("/edit/:id", loginChecker, ContactController.editContact);
+router.get("/del/:id", loginChecker, ContactController.deleteContact);
 
-function renderPage(data, res, title, content_path) {
-  res.render("content", {
-    title: "Contect list",
-    content_path: prefix + "list",
-  });
-}
 
 module.exports = router;
