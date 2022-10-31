@@ -32,11 +32,11 @@ router.get("/login", (req, res, next) => {
 });
 
 router.get("/register", (req, res, next) => {
-  res.render("content", {
-    title: "Register",
-    messages: req.flash("registerMessage"),
-    content_path: prefix + "register",
-  });
+  // res.render("content", {
+  //   title: "Register",
+  //   messages: req.flash("registerMessage"),
+  //   content_path: prefix + "register",
+  // });
 });
 
 router.post("/login", (req, res, next) => {
